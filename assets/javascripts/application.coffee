@@ -2,7 +2,9 @@
 # It includes jquery & batman for you.
 #= require dashing.js
 
-#= require_directory .
+#= require ./d3-3.2.8.js
+#= require ./jquery.knob.js
+#= require ./rickshaw-1.4.3.min.js
 #= require_tree ../../widgets
 
 console.log("Yeah! The dashboard has started!")
@@ -15,11 +17,5 @@ Dashing.on 'ready', ->
   contentWidth = (Dashing.widget_base_dimensions[0] + Dashing.widget_margins[0] * 2) * Dashing.numColumns
 
   Batman.setImmediate ->
-    $('.gridster').width(contentWidth)
-    $('.gridster ul:first').gridster
-      widget_margins: Dashing.widget_margins
-      widget_base_dimensions: Dashing.widget_base_dimensions
-      avoid_overlapped_widgets: !Dashing.customGridsterLayout
-      draggable:
-        stop: Dashing.showGridsterInstructions
-        start: -> Dashing.currentWidgetPositions = Dashing.getWidgetPositions()
+    $('.isotope').isotope
+      itemSelector: '.widget_parent_1x1, .widget_parent_2x1, .widget_parent_1x2'
